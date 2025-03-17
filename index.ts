@@ -4,6 +4,7 @@ import { StringSession } from "telegram/sessions";
 import input from "input"; // For CLI input (only needed if first-time login requires a code)
 import { getAllChats, saveChatsToFile } from "./getDialogs";
 import { config } from "dotenv";
+import { markAllChatsAsRead } from "./markAllChatsAsRead";
 config(); 
 
 const apiId = Number(process.env.API_ID!); 
@@ -35,6 +36,7 @@ async function start() {
 
   saveChatsToFile(chats);
 
+  markAllChatsAsRead(client,chats)
 
   // client.addEventHandler((update) => {
   //   console.log("New message received:", update);
